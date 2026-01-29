@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-interface IInteractable{
+interface IInteractable {
     public void Interact();
 }
 
@@ -18,8 +18,8 @@ public class Interact : MonoBehaviour
     void Update() {
         if (Keyboard.current.eKey.wasPressedThisFrame) {
             Ray r = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-            if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange)){
-                if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj)) {
+            if (Physics.Raycast(r, out RaycastHit hit, InteractRange)){
+                if (hit.collider.gameObject.TryGetComponent(out IInteractable interactObj)) {
                     interactObj.Interact();
                 }
             }

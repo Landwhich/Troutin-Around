@@ -760,6 +760,27 @@ MonoBehaviour:
   conductor: {fileID: 1993676478}
   clip: {fileID: 8300000, guid: 201538715ca2b4045a5c8bc1470cb462, type: 3}
   poolSize: 4
+--- !u!65 &520594110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520594100}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.00620603, y: 0.007063678, z: 0.023711624}
+  m_Center: {x: -0.00037429688, y: -0.00016392172, z: 0.002599312}
 --- !u!1 &533612822 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 41565eb5e7bdc424bbb09bdb40ab41a7, type: 3}
@@ -842,6 +863,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da40111bee7c7b5409485b970e601812, type: 3}
       insertIndex: -1
       addedObject: {fileID: 520594106}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da40111bee7c7b5409485b970e601812, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 520594110}
   m_SourcePrefab: {fileID: 100100000, guid: da40111bee7c7b5409485b970e601812, type: 3}
 --- !u!1001 &645630008
 PrefabInstance:
@@ -1133,8 +1157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21293973085d99c4c89fcef7c1019ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractorSource: {fileID: 711342267}
-  InteractRange: 50
+  playerCamera: {fileID: 711342270}
+  InteractRange: 5
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

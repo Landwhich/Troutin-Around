@@ -44,7 +44,7 @@ public class Instrument : MonoBehaviour, IInteractable
     }
 
     public void Interact(){
-        Debug.Log("Hit");
+        if (isPlaying) {this.TurnOff(); return;} this.TurnOn();
     }
 
     void ScheduleNextHit()
