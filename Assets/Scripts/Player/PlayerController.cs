@@ -6,8 +6,11 @@ public class PlayerController : MonoBehaviour
     public float speed = 12.0f;
     public float mouseSensitivity = 100.0f;
 
+    public PlayerController player;
     public CharacterController controller;
     public Transform cameraTransform;
+
+    public Vector3 CurrentMove { get; private set; }
 
     Vector2 rotation = new Vector2(0.0f, 0.0f);
 
@@ -22,13 +25,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector2 moveInput = Keyboard.current != null ? new Vector2 (
-                (Keyboard.current.aKey.isPressed ? -1 : 0) + (Keyboard.current.dKey.isPressed ? 1 : 0),
-                (Keyboard.current.wKey.isPressed ? 1 : 0) + (Keyboard.current.sKey.isPressed ? -1 : 0)
+                (Keyboard.current.aKey.isPressed ? -1 : 0) + (Keyboard.current.dKey.isPressed ?  1 : 0),
+                (Keyboard.current.wKey.isPressed ?  1 : 0) + (Keyboard.current.sKey.isPressed ? -1 : 0)
             ) : Vector2.zero;
-
         Vector3 move = cameraTransform.right * moveInput.x + cameraTransform.forward * moveInput.y;
+       
         move.y = 0;
-        controller.Move(move*speed*Time.deltaTime);
+        CurrentMove = move.normalized * speed;
+        // controller.Move(move*speed*Time.deltaTime);
 
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
@@ -42,5 +46,9 @@ public class PlayerController : MonoBehaviour
 
         cameraTransform.localRotation = Quaternion.Euler(rotation.y, rotation.x, 0f);
         transform.Rotate(Vector3.up * mouseX);
+    }
+
+    void FixedUpdate() {
+        controller.Move(CurrentMove * Time.fixedDeltaTime);
     }
 }

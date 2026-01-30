@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Instrument : MonoBehaviour, IInteractable
 {
+
     public Conductor conductor;
     public AudioClip clip;
+    public float speed = 1.0f;
     public int poolSize = 4;          // 2 is minimum, 4 is safer
 
     private AudioSource[] sources;
@@ -11,7 +13,9 @@ public class Instrument : MonoBehaviour, IInteractable
 
     private double nextPlayTime;
     private double beatInterval;
+    public PlayerController player;
     private bool isPlaying = false;
+    private bool held = false;
 
     void Awake()
     {
@@ -44,7 +48,11 @@ public class Instrument : MonoBehaviour, IInteractable
     }
 
     public void Interact(){
-        if (isPlaying) {this.TurnOff(); return;} this.TurnOn();
+        if (isPlaying) {TurnOff(); return;} TurnOn();
+    }
+
+    public void Grab(){
+        held = !held;
     }
 
     void ScheduleNextHit()
@@ -58,10 +66,18 @@ public class Instrument : MonoBehaviour, IInteractable
 
     void Start()
     {
-        beatInterval = 60.0 / conductor.bpm;
+        beatInterval = 60.0 / conductor.bpm / speed;
         // this.TurnOn();   // starts continuous on-beat playback
     }
 
+    void FixedUpdate(){
+        if (!held || player == null) return;
+
+        Vector3 move = player.CurrentMove;
+        move.y = 0;
+
+        transform.position += move * Time.fixedDeltaTime;
+    }
 
     void Update()
     {

@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 interface IInteractable {
     public void Interact();
+    public void Grab();
 }
 
 public class Interact : MonoBehaviour
@@ -21,6 +22,14 @@ public class Interact : MonoBehaviour
             if (Physics.Raycast(r, out RaycastHit hit, InteractRange)){
                 if (hit.collider.gameObject.TryGetComponent(out IInteractable interactObj)) {
                     interactObj.Interact();
+                }
+            }
+        }
+        if (Keyboard.current.qKey.wasPressedThisFrame) {
+            Ray r = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+            if (Physics.Raycast(r, out RaycastHit hit, InteractRange)){
+                if (hit.collider.gameObject.TryGetComponent(out IInteractable interactObj)) {
+                    interactObj.Grab();
                 }
             }
         }
