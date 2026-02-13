@@ -8,6 +8,8 @@ public class lureCollision : MonoBehaviour
     public bool lureIsInWater;
     public float lureReelSpeed;
 
+    public GameObject mackerel;
+
     Rigidbody lureRB;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +39,8 @@ public class lureCollision : MonoBehaviour
 
     public void reelLure()
     {
+        mackerel.SetActive(true);
+
         if (fishingLure.transform.position != lureOrigin.transform.position)
         {
             fishingLure.transform.position = Vector3.MoveTowards(fishingLure.transform.position, lureOrigin.transform.position,
