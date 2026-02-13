@@ -29,7 +29,7 @@ public class fishingBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.fKey.wasPressedThisFrame)
+        if (Keyboard.current.fKey.wasPressedThisFrame && lureIsCast == false)
         {
             toggleFishing = !toggleFishing;
             
@@ -45,24 +45,29 @@ public class fishingBehaviour : MonoBehaviour
 
 
         if (toggleFishing == true) {
-            // have fishing rod track mouse
+            // later: have fishing rod track mouse on activating fishing mode
 
-
-            if (Mouse.current.leftButton.wasReleasedThisFrame && lureIsCast != true)
+            if (Mouse.current.leftButton.wasReleasedThisFrame && lureIsCast == false)
             {
                 // cast fishing lure
                 lureIsCast=true;
-
-                fishingRodAnimator.Play("FishingRodCast");
+                Debug.Log("Lure is cast = " + lureIsCast);
+                
+                fishingRodAnimator.Play("FishingRodCast");  // animation which triggers throwLure()
             }
 
-            if (Mouse.current.leftButton.wasPressedThisFrame && lureCollision.lureIsInWater == true)
+            if (Mouse.current.rightButton.IsPressed() == true && lureCollision.lureIsInWater == true)
             {
+                // TO BE CHANGED TO LEFT BUTTON ONCE lureIsCast BOOLEANS ACTUALLY WORK
+
                 // reel in fishing lure
 
-                // raycast distance to rod tip
+                // now: button press to trigger lure to move back to fishingRodTip
+                // later: raycast distance to rod tip, hold down to reel along water's surface
 
+                Debug.Log("Reeling in lure!");
 
+                lureCollision.reelLure();
             }
         }
     }

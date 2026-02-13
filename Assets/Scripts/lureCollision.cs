@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class lureCollision : MonoBehaviour
 {
-    public bool lureIsInWater;
     public GameObject fishingLure;
+    public Transform lureOrigin;
+
+    public bool lureIsInWater;
+    public float lureReelSpeed;
 
     Rigidbody lureRB;
 
@@ -16,19 +19,32 @@ public class lureCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Water"))
+        if (collision.gameObject.tag == "Water")
         {
-            Debug.Log("The lure collider with water!");
+            Debug.Log("The lure collided with water!");
             
             lureRB.useGravity = false;
             lureRB.linearVelocity = Vector3.zero;
             lureRB.angularVelocity = Vector3.zero;
             lureIsInWater = true;
+        }
+    }
+
+    public void reelLure()
+    {
+        if (fishingLure.transform.position != lureOrigin.transform.position)
+        {
+            fishingLure.transform.position = Vector3.MoveTowards(fishingLure.transform.position, lureOrigin.transform.position,
+                                                                    lureReelSpeed * Time.deltaTime);
+        }
+        else if (fishingLure.transform.position == lureOrigin.transform.position)
+        {
+            lureIsInWater = false;
         }
     }
 }

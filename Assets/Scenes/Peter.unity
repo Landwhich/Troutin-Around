@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 20551698}
   - component: {fileID: 20551697}
+  - component: {fileID: 20551699}
   m_Layer: 0
   m_Name: FishingLine
   m_TagString: Untagged
@@ -160,7 +161,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -7791486788655378091, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -192,7 +193,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.02542305
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -252,12 +253,26 @@ Transform:
   m_GameObject: {fileID: 20551696}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.43324, y: -1.75, z: 13.39993}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1550117827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &20551699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20551696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605294954ededf34eb0aa039bb68843f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 1283896126}
+  lure: {fileID: 1370491727}
 --- !u!1 &311101752
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,13 +574,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1370491727}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1283896126}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
       insertIndex: -1
       addedObject: {fileID: 652612079}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 652612078}
   m_SourcePrefab: {fileID: 100100000, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
 --- !u!4 &652612076 stripped
 Transform:
@@ -577,21 +592,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
   m_PrefabInstance: {fileID: 652612075}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &652612078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652612077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc171b41c75cf33489011f4d9f65e5dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fishingRod: {fileID: 0}
-  fishingLure: {fileID: 0}
-  lureCollision: {fileID: 0}
 --- !u!95 &652612079
 Animator:
   serializedVersion: 7
@@ -830,7 +830,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 943353131}
   m_CullTransparentMesh: 1
---- !u!1 &1030606128
+--- !u!1 &1009800859
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -838,40 +838,142 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1030606130}
-  - component: {fileID: 1030606129}
+  - component: {fileID: 1009800865}
+  - component: {fileID: 1009800864}
+  - component: {fileID: 1009800863}
+  - component: {fileID: 1009800862}
+  - component: {fileID: 1009800861}
+  - component: {fileID: 1009800860}
   m_Layer: 0
-  m_Name: FishingBehaviour
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1030606129
+  m_IsActive: 0
+--- !u!114 &1009800860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030606128}
+  m_GameObject: {fileID: 1009800859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc171b41c75cf33489011f4d9f65e5dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d7bc60427997754e8dd3fe91a10e4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishingRod: {fileID: 652612077}
-  fishingLure: {fileID: 1370491726}
-  lureCollision: {fileID: 1370491731}
---- !u!4 &1030606130
+--- !u!54 &1009800861
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009800859}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1009800862
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009800859}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1009800863
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009800859}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1009800864
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009800859}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1009800865
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030606128}
+  m_GameObject: {fileID: 1009800859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4.67, z: 7.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1018,6 +1120,37 @@ Transform:
   - {fileID: 1550117827}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1283896125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1283896126}
+  m_Layer: 0
+  m_Name: fishingRodTip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1283896126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283896125}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.8660254, z: -0.5, w: 0}
+  m_LocalPosition: {x: 0, y: 2.022, z: -0.012}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 652612076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370491726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1164,7 @@ GameObject:
   - component: {fileID: 1370491729}
   - component: {fileID: 1370491728}
   - component: {fileID: 1370491731}
+  - component: {fileID: 1370491732}
   m_Layer: 0
   m_Name: Lure
   m_TagString: Untagged
@@ -1047,8 +1181,8 @@ Transform:
   m_GameObject: {fileID: 1370491726}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0.70710677, w: 0}
-  m_LocalPosition: {x: 0, y: 2.04, z: -0.03000009}
-  m_LocalScale: {x: 0.05, y: 0.050000027, z: 0.050000027}
+  m_LocalPosition: {x: 0, y: 2.04, z: -0.03}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 652612076}
@@ -1097,7 +1231,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: af93401ab426caf4eb531a8fa7d86c85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1140,6 +1274,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lureIsInWater: 0
+  fishingLure: {fileID: 1370491726}
+  lureOrigin: {fileID: 1283896126}
+--- !u!54 &1370491732
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370491726}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &1395002837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1618,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1550117827}
   - component: {fileID: 1550117828}
+  - component: {fileID: 1550117829}
   m_Layer: 0
   m_Name: FishingRodGroup
   m_TagString: Untagged
@@ -1501,6 +1665,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1550117829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550117826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc171b41c75cf33489011f4d9f65e5dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishingRod: {fileID: 652612077}
+  fishingRodAnimator: {fileID: 1550117828}
+  lureThrowForce: 7
+  lureReelSpeed: 0
+  fishingLure: {fileID: 1370491726}
+  lureOrigin: {fileID: 1370491727}
+  lureCollision: {fileID: 1370491731}
 --- !u!1 &2133630354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,5 +1729,5 @@ SceneRoots:
   - {fileID: 311101756}
   - {fileID: 840694793}
   - {fileID: 619407653}
-  - {fileID: 1030606130}
   - {fileID: 1266578827}
+  - {fileID: 1009800865}

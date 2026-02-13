@@ -17,7 +17,7 @@ public class fishingLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // below will be used with a public int lineSegments to simulate line drooping
+        // for loop will be used to select the lineSegments array
         /*
         lineRenderer.positionCount = lineSegments.Length;
         for (int i = 0; i < lineSegments.Length; i++)
