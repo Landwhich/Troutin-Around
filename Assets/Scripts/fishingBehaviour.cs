@@ -4,8 +4,15 @@ using UnityEngine.InputSystem;
 public class fishingBehaviour : MonoBehaviour
 {
     public GameObject fishingRod;
+    public Animator fishingRodAnimator;
+
+    public float lureThrowForce;
+
     public GameObject fishingLure;
+    public Transform lureOrigin;
     public lureCollision lureCollision;
+
+    Rigidbody lureRB;
 
     private bool toggleFishing;
     private bool lureIsCast;
@@ -15,6 +22,8 @@ public class fishingBehaviour : MonoBehaviour
     {
         toggleFishing = false;
         lureIsCast = false;
+
+        lureRB = fishingLure.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -42,7 +51,9 @@ public class fishingBehaviour : MonoBehaviour
             if (Mouse.current.leftButton.wasReleasedThisFrame && lureIsCast != true)
             {
                 // cast fishing lure
+                lureIsCast=true;
 
+                fishingRodAnimator.Play("FishingRodCast");
             }
 
             if (Mouse.current.leftButton.wasPressedThisFrame && lureCollision.lureIsInWater == true)
@@ -56,6 +67,17 @@ public class fishingBehaviour : MonoBehaviour
         }
     }
 
+    public void throwLure()
+    {
+        // to be called by an event in the FishingRodCast animation used by FishingRodGroup
+        lureRB.useGravity = true;
+        lureRB.linearVelocity = Vector3.zero;
 
+        fishingLure.transform.position = lureOrigin.position;
+        fishingLure.SetActive(true);
 
+        lureRB.AddForce(lureOrigin.forward * lureThrowForce, ForceMode.Impulse);
+
+        Debug.Log("Lure has been thrown!");
+    }
 }
