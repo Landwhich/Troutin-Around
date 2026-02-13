@@ -14,8 +14,6 @@ public class fishingBehaviour : MonoBehaviour
 
     Rigidbody lureRB;
 
-    public mackerelBehaviour mackerelBehaviour;
-
     private bool toggleFishing;
     private bool lureIsCast;
 
@@ -70,7 +68,6 @@ public class fishingBehaviour : MonoBehaviour
                 Debug.Log("Reeling in lure!");
 
                 lureCollision.reelLure();
-                mackerelBehaviour.attachMackerel();
             }
         }
     }
