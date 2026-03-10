@@ -1168,7 +1168,7 @@ MonoBehaviour:
   blendMode: 0
   opacity: 100
   passIndex: 0
-  min: 25
+  min: 30
   minFalloff: 5
   max: 2000
   maxFalloff: 1
@@ -1760,7 +1760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 640964400609973543, guid: a7bd20895c080df48807057de2660118, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.73484
+      value: 0.8450513
       objectReference: {fileID: 0}
     - target: {fileID: 640964400609973543, guid: a7bd20895c080df48807057de2660118, type: 3}
       propertyPath: m_LocalScale.z
@@ -1768,11 +1768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 640964400609973543, guid: a7bd20895c080df48807057de2660118, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.32918096
+      value: -0.4172
       objectReference: {fileID: 0}
     - target: {fileID: 640964400609973543, guid: a7bd20895c080df48807057de2660118, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0054062926
+      value: 0.0018
       objectReference: {fileID: 0}
     - target: {fileID: 640964400609973543, guid: a7bd20895c080df48807057de2660118, type: 3}
       propertyPath: m_LocalPosition.z
