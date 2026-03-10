@@ -3166,12 +3166,24 @@ PrefabInstance:
       value: Shed
       objectReference: {fileID: 0}
     - target: {fileID: 1997509787404960306, guid: 239a2f199d80b674cbaa9abcffb0f9cb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 706.6615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997509787404960306, guid: 239a2f199d80b674cbaa9abcffb0f9cb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 706.6615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997509787404960306, guid: 239a2f199d80b674cbaa9abcffb0f9cb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 706.6615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997509787404960306, guid: 239a2f199d80b674cbaa9abcffb0f9cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.9
+      value: 18.12
       objectReference: {fileID: 0}
     - target: {fileID: 1997509787404960306, guid: 239a2f199d80b674cbaa9abcffb0f9cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.69
+      value: 3.04
       objectReference: {fileID: 0}
     - target: {fileID: 1997509787404960306, guid: 239a2f199d80b674cbaa9abcffb0f9cb, type: 3}
       propertyPath: m_LocalPosition.z
