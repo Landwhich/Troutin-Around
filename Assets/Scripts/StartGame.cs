@@ -8,4 +8,9 @@ public class StartGame : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void VR_launch()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
