@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class boatController : MonoBehaviour
 {
-    public float speed = 10f;
-    public float turnSpeed = 50f;
+    public float speed = 500f;
+    public float turnSpeed = 200f;
 
     public bool isDriving = false;
 
