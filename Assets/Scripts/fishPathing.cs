@@ -1,17 +1,4 @@
 using UnityEngine;
-
-/// <summary>
-/// Controls a single fish moving in straight lines inside a bounding sphere.
-/// Fish steer away from each other and reflect off the sphere boundary.
-/// 
-/// VERTEX SHADER NOTE:
-/// This script drives transform.position and transform.rotation only.
-/// Your vertex shader can read per-instance data via MaterialPropertyBlock:
-///   - "_SwimPhase"  (float) — advances each frame, drives fin/body oscillation
-///   - "_Speed"      (float) — current speed, can scale deformation amplitude
-/// Set these each frame via mpb.SetFloat() after position updates.
-/// Each fish should have its own MaterialPropertyBlock to avoid batching conflicts.
-/// </summary>
 public class FishController : MonoBehaviour
 {
     public Transform sphereCenter;
@@ -25,6 +12,8 @@ public class FishController : MonoBehaviour
 
     public float boundarySteerFraction = 0.65f;
     public float boundaryStrength = 30f;
+    public float waterLevel = 0;
+    private Transform _lureTarget;
 
     // Shader data 
     private MaterialPropertyBlock _mpb;
@@ -62,7 +51,6 @@ public class FishController : MonoBehaviour
         Quaternion targetRot = Quaternion.identity;
         switch (_state)
         {
-
         case fishState.swimming:
         steering += BoundarySteering();
         steering += AvoidanceSteering();
@@ -73,63 +61,81 @@ public class FishController : MonoBehaviour
         break;
 
         case fishState.attracted:
-        // 2 - Oncollision triggers a desired direction change
+        if (_lureTarget != null)
+            _desiredDirection = (_lureTarget.position - transform.position).normalized;
         targetRot = Quaternion.LookRotation(_desiredDirection, Vector3.up);
         break;
 
         case fishState.lured:
-        //pass for now
+            Destroy(this);
+            break;
         default:
         break;
         }
         // 3 - set heading for forward transform
-        transform.rotation   = Quaternion.RotateTowards(transform.rotation, targetRot, turnSpeed * dt);
+        transform.rotation  = Quaternion.RotateTowards(transform.rotation, targetRot, turnSpeed * dt);
         transform.position += transform.forward * speed * dt;
-        // 4 - clamp to bounds
-        // Vector3 center = sphereCenter ? sphereCenter.position : Vector3.zero;
-        // Vector3 offset = transform.position - center;
-        // if (offset.magnitude > sphereRadius)
-        // {
-        //     transform.position    = center + offset.normalized * sphereRadius;
-        //     _desiredDirection     = Vector3.Reflect(_desiredDirection, offset.normalized);
-        // }
-        // 5 - update shader
+        // 4 - clamp to bounds - prob can remove this
+        Vector3 center = sphereCenter ? sphereCenter.position : Vector3.zero;
+        Vector3 offset = transform.position - center;
+
+        // sphere 
+        if (offset.magnitude > sphereRadius)
+        {
+            transform.position = center + offset.normalized * sphereRadius;
+            _desiredDirection  = Vector3.Reflect(_desiredDirection, offset.normalized);
+        }
+
+        // flat water
+        if (transform.position.y > waterLevel)
+        {
+            transform.position    = new Vector3(transform.position.x, waterLevel, transform.position.z);
+            _desiredDirection     = Vector3.Reflect(_desiredDirection, Vector3.up);
+        }
         UpdateShaderData(dt);
     }
 
-    void OnCollisionEnter(Collision collision){
-        Debug.Log("lure");
-        if (collision.gameObject.CompareTag("lure")) {
-            Debug.Log("lure");
-            _desiredDirection = collision.gameObject.transform.position;
+    void OnTriggerEnter(Collider other) {
+        if (!other.CompareTag("lure")) return;
+        
+        float dist = Vector3.Distance(transform.position, other.transform.position);
+        if (dist < 0.5f) 
+            _state = fishState.lured;
+        else {
+            _lureTarget = other.transform;
             _state = fishState.attracted;
         }
     }
 
-    // ─────────────────────────────────────────────────────────────────
-    /// <summary>
-    /// Steer back toward centre when approaching the sphere wall.
-    /// Returns an inward force vector (not normalised – magnitude encodes urgency).
-    /// </summary>
     Vector3 BoundarySteering()
     {
-        Vector3 center      = sphereCenter ? sphereCenter.position : Vector3.zero;
-        Vector3 toCenter    = center - transform.position;
-        float   distFromCenter = toCenter.magnitude;
-        float   threshold   = sphereRadius * boundarySteerFraction;
+        Vector3 steering = Vector3.zero;
+        Vector3 center   = sphereCenter ? sphereCenter.position : Vector3.zero;
 
-        if (distFromCenter < threshold) return Vector3.zero;
+        // Sphere wall
+        Vector3 toCenter     = center - transform.position;
+        float distFromCenter = toCenter.magnitude;
+        float threshold      = sphereRadius * boundarySteerFraction;
 
-        // Linearly ramp up force as fish approaches wall
-        float urgency = (distFromCenter - threshold) / (sphereRadius - threshold);
-        return toCenter.normalized * (urgency * boundaryStrength);
+        if (distFromCenter > threshold)
+        {
+            float urgency = (distFromCenter - threshold) / (sphereRadius - threshold);
+            steering += toCenter.normalized * (urgency * boundaryStrength);
+        }
+
+        // Water ceiling
+        float distToSurface   = waterLevel - transform.position.y;
+        float surfaceThreshold = sphereRadius * (1f - boundarySteerFraction);
+
+        if (distToSurface < surfaceThreshold && distToSurface > 0)
+        {
+            float urgency = 1f - (distToSurface / surfaceThreshold);
+            steering += Vector3.down * (urgency * boundaryStrength);
+        }
+
+        return steering;
     }
 
-    // ─────────────────────────────────────────────────────────────────
-    /// <summary>
-    /// Steer away from nearby fish.
-    /// Uses a simple repulsion sum — no alignment, no cohesion (not boids).
-    /// </summary>
     Vector3 AvoidanceSteering()
     {
         if (_allFish == null) return Vector3.zero;
@@ -155,17 +161,12 @@ public class FishController : MonoBehaviour
         return repulsion * avoidanceStrength;
     }
 
-    // ─────────────────────────────────────────────────────────────────
-    /// <summary>
-    /// Push per-instance floats to the GPU via MaterialPropertyBlock.
-    /// Your vertex shader can read _SwimPhase and _Speed to drive
-    /// body/tail deformation without touching the C# side.
-    /// </summary>
+    // Deprecated
     void UpdateShaderData(float dt)
     {
         if (_renderer == null) return;
 
-        _swimPhase += speed * dt * Mathf.PI; // phase advances proportional to speed
+        _swimPhase += speed * dt * Mathf.PI;
 
         _renderer.GetPropertyBlock(_mpb);
         _mpb.SetFloat("_SwimPhase", _swimPhase);
@@ -173,7 +174,6 @@ public class FishController : MonoBehaviour
         _renderer.SetPropertyBlock(_mpb);
     }
 
-    // ─────────────────────────────────────────────────────────────────
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
