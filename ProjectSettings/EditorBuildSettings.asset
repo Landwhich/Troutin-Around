@@ -18,5 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Cayden.unity
     guid: f940f9f5b7466e142a41076cd7087921
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8b04eba066747714d943362e37136988, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 23568d75923d23d48bf9c8b74c2747a3, type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 74ca482774e51204887fdc392b7aec81, type: 2}
   m_UseUCBPForAssetBundles: 0
