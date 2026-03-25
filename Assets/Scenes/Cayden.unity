@@ -3356,11 +3356,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5221712967051751979, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
---- !u!4 &1650963798 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2430045429073833214, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-  m_PrefabInstance: {fileID: 5250776413546340693}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1653398900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 265423298508558237, guid: a7bd20895c080df48807057de2660118, type: 3}
@@ -3760,42 +3755,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 401449855}
     m_Modifications:
-    - target: {fileID: 511569450135555741, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 511569450135555741, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 511569450135555741, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_ProvidesContacts
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162129909129434556, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3651273594030013047, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 726215658}
-    - target: {fileID: 3969904072111930451, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: motorLocation
-      value: 
-      objectReference: {fileID: 1650963798}
-    - target: {fileID: 4649823871764562648, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 744.15814
-      objectReference: {fileID: 0}
-    - target: {fileID: 4649823871764562648, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 159.70721
-      objectReference: {fileID: 0}
-    - target: {fileID: 4649823871764562648, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 348.83203
-      objectReference: {fileID: 0}
     - target: {fileID: 4649823871764562648, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
       propertyPath: m_LocalPosition.x
       value: -53.2
@@ -3839,42 +3802,6 @@ PrefabInstance:
     - target: {fileID: 5461932314652629090, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
       propertyPath: m_Name
       value: boat
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720554617525288967, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.11761461
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720554617525288967, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.548027
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720554617525288967, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.25090548
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720554617525288967, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.00573
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720554617525288967, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0085621
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720554617525288967, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.00026
-      objectReference: {fileID: 0}
-    - target: {fileID: 6312248113806634245, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_Mass
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 6312248113806634245, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6312248113806634245, guid: 60ba33ac6e2ea7444b118e0937faaa96, type: 3}
-      propertyPath: m_Constraints
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
