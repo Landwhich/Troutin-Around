@@ -3416,7 +3416,10 @@ MonoBehaviour:
   m_StartingGroupMembers:
   - {fileID: 1624288473}
   - {fileID: 394168213}
-  m_StartingInteractionOverridesMap: []
+  m_StartingInteractionOverridesMap:
+  - groupMember: {fileID: 1624288473}
+    overrideGroupMembers:
+    - {fileID: 394168213}
 --- !u!114 &1624288473 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5659259529405461278, guid: 629ef43752f74804f87fdfd11ec2dd98, type: 3}
