@@ -222,7 +222,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: -0.16, z: -0.21}
-  m_LocalScale: {x: 1.7248, y: 1.7248, z: 1.7248}
+  m_LocalScale: {x: 6.51181, y: 6.51181, z: 6.51181}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -517,7 +517,6 @@ GameObject:
   - component: {fileID: 802564865}
   - component: {fileID: 802564869}
   - component: {fileID: 802564864}
-  - component: {fileID: 802564870}
   m_Layer: 0
   m_Name: KM_Camera
   m_TagString: Untagged
@@ -688,20 +687,6 @@ MonoBehaviour:
   AmplitudeGain: 1
   FrequencyGain: 1
   m_NoiseOffsets: {x: -853.7522, y: 261.0545, z: 176.4592}
---- !u!114 &802564870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802564863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a651f52b64a4f41a293623796ac7ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  computeShader: {fileID: 7200000, guid: de5acf3bbe51c8446906683a3c2d816c, type: 3}
-  target: {fileID: 0}
 --- !u!1 &1091609851
 GameObject:
   m_ObjectHideFlags: 0

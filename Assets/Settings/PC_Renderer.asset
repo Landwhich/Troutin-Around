@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3801222961105208439
+--- !u!114 &-7331716400514670376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,17 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
-  m_Name: FullScreenPassRendererFeature
+  m_Script: {fileID: 11500000, guid: f4e499d2d3b7816489f1ab42ad48fe28, type: 3}
+  m_Name: RainDropRenderFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  injectionPoint: 600
-  fetchColorBuffer: 1
-  requirements: 4
-  passMaterial: {fileID: 2100000, guid: 1ebd0b04630d7bb4faf79bfcd75fa054, type: 2}
-  passIndex: 0
-  bindDepthStencilAttachment: 0
-  m_Version: 1
+  settings:
+    rainDropShader: {fileID: 7200000, guid: de5acf3bbe51c8446906683a3c2d816c, type: 3}
+    noiseTex: {fileID: 2800000, guid: 73d7f0e1ca8797448a3848b394c570e6, type: 3}
+    dropColor: {r: 0.10092559, g: 0.2830891, b: 0.33962262, a: 1}
+    thickness: 5
+    sobelThreshold: 0.017
+    rainDropScale: 0.373
+    dropSpeed: 100
+    renderPassEvent: 500
+    previewInSceneView: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,8 +49,8 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
-  - {fileID: -3801222961105208439}
-  m_RendererFeatureMap: ad6b866f10d7b46c89fb434bdb573fcb
+  - {fileID: -7331716400514670376}
+  m_RendererFeatureMap: ad6b866f10d7b46cd8e06a61c782409a
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}

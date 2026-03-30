@@ -1,0 +1,91 @@
+// RainDropCompute.compute
+#pragma kernel ScreenSpaceRainDrop
+
+Texture2D<float4> _InputColorTex;
+Texture2D<float>  _InputDepthTex;
+Texture2D<float4> _NoiseTex;
+RWTexture2D<float4> _OutputTex;
+
+SamplerState sampler_linear_repeat;
+SamplerState sampler_point_clamp;
+
+int   _Width;
+int   _Height;
+int   _Thickness;
+float _EdgeThreshold;
+float _RainDropScale;
+int   _NoiseWidth;
+int   _NoiseHeight;
+float4 _Time;
+float _DropSpeed;
+float4 _DropColor;
+
+// Sample depth at pixel coords, clamped to screen
+float SampleDepth(int2 uv)
+{
+    uv = clamp(uv, int2(0, 0), int2(_Width - 1, _Height - 1));
+    float d = _InputDepthTex[uv].r;
+    return 1.0 - d;
+}
+
+[numthreads(8, 8, 1)]
+void ScreenSpaceRainDrop(uint3 id : SV_DispatchThreadID)
+{
+    if ((int)id.x >= _Width || (int)id.y >= _Height)
+        return;
+
+    int2 uv = int2(id.xy);
+
+    // ---- Sobel Edge Detection on Depth ----
+    float h = 0.0;
+    float v = 0.0;
+
+    // Horizontal kernel
+    h += SampleDepth(uv + int2(-_Thickness, -_Thickness)) * -1.0;
+    h += SampleDepth(uv + int2( _Thickness, -_Thickness)) *  1.0;
+    h += SampleDepth(uv + int2(-_Thickness,  0))          * -2.0;
+    h += SampleDepth(uv + int2( _Thickness,  0))          *  2.0;
+    h += SampleDepth(uv + int2(-_Thickness,  _Thickness)) * -1.0;
+    h += SampleDepth(uv + int2( _Thickness,  _Thickness)) *  1.0;
+
+    // Vertical kernel
+    v += SampleDepth(uv + int2(-_Thickness, -_Thickness)) * -1.0;
+    v += SampleDepth(uv + int2( 0,          -_Thickness)) * -2.0;
+    v += SampleDepth(uv + int2( _Thickness, -_Thickness)) * -1.0;
+    v += SampleDepth(uv + int2(-_Thickness,  _Thickness)) *  1.0;
+    v += SampleDepth(uv + int2( 0,           _Thickness)) *  2.0;
+    v += SampleDepth(uv + int2( _Thickness,  _Thickness)) *  1.0;
+
+    float magnitude = sqrt(h * h + v * v);
+    float angle     = atan2(v, h); // -pi to pi
+
+    // ---- Angle Mask: only keep upward-facing edges ----
+    // atan2 returns ~PI/2 for "up" in screen space
+    // We restrict to roughly the top half of the gradient circle
+    float pi = 3.14159265;
+    float _AngleHalfWidth = 0.1;
+    float upMask = step((0.5 - _AngleHalfWidth) * pi, angle) 
+             * step(angle, (0.5 + _AngleHalfWidth) * pi);
+
+    // Edge mask: magnitude above threshold AND pointing upward
+    float edgeMask = step(_EdgeThreshold, magnitude) * upMask;
+
+    // ---- Scrolling Noise ----
+    float2 noiseUV;
+    noiseUV.x = (float)id.x / (float)_Width;
+    noiseUV.y = (float)id.y / (float)_Height + _Time.y * (_DropSpeed / _Height);
+
+    float4 noiseSample = _NoiseTex.SampleLevel(sampler_linear_repeat, noiseUV, 0);
+    float  noiseVal    = noiseSample.r;
+
+    // Step the noise to get discrete droplet shapes
+    float dropMask = step(_RainDropScale, noiseVal);
+
+    // ---- Combine ----
+    float finalMask = edgeMask * dropMask;
+
+    float4 originalColor = _InputColorTex[uv];
+    float4 result = lerp(originalColor, _DropColor, finalMask * _DropColor.a);
+
+    _OutputTex[uv] = result;
+}
