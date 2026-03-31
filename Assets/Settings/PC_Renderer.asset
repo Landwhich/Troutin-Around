@@ -18,8 +18,8 @@ MonoBehaviour:
     noiseTex: {fileID: 2800000, guid: 73d7f0e1ca8797448a3848b394c570e6, type: 3}
     dropColor: {r: 0.10092559, g: 0.2830891, b: 0.33962262, a: 1}
     thickness: 5
-    sobelThreshold: 0.017
-    rainDropScale: 0.373
+    sobelThreshold: 0.032
+    rainDropScale: 0.267
     dropSpeed: 100
     renderPassEvent: 500
     previewInSceneView: 0
