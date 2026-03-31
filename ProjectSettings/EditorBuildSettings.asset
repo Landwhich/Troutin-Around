@@ -5,9 +5,24 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/LaunchScene.unity
+    guid: 5cf7336b41a83e74ab23a321dd90a3ef
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 3c3057fc13e8a3a4d8c75266739e150f
+  - enabled: 0
+    path: Assets/Scenes/World_Assests.unity
+    guid: 5b0e7af4c0ac2e6478eec6a01c22f10f
+  - enabled: 0
+    path: Assets/Scenes/Cayden.unity
+    guid: f940f9f5b7466e142a41076cd7087921
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8b04eba066747714d943362e37136988, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 23568d75923d23d48bf9c8b74c2747a3, type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 74ca482774e51204887fdc392b7aec81, type: 2}
   m_UseUCBPForAssetBundles: 0

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Water
+  - lure
+  - Interactible
+  - boat
   layers:
   - Default
   - TransparentFX
