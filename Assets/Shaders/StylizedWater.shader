@@ -77,7 +77,7 @@ Shader "Custom/StylizedWater"
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
-            // ── Procedural noise (no textures needed) ─────────────────────
+            //  noise gen
             float2 _hash2(float2 p)
             {
                 p = float2(dot(p, float2(127.1, 311.7)),
@@ -112,7 +112,6 @@ Shader "Custom/StylizedWater"
                 return ((valueNoise(u1) + valueNoise(u2)) * 0.5) * _WaveStrength;
             }
 
-            // ── Vertex ────────────────────────────────────────────────────
             Varyings vert(Attributes IN)
             {
                 UNITY_SETUP_INSTANCE_ID(IN);
@@ -128,7 +127,6 @@ Shader "Custom/StylizedWater"
                 return OUT;
             }
 
-            // ── Fragment ──────────────────────────────────────────────────
             half4 frag(Varyings IN) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);

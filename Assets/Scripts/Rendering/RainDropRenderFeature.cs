@@ -32,7 +32,6 @@ public class RainDropRenderFeature : ScriptableRendererFeature
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
-        // Guard against missing assets
         if (settings.rainDropShader == null || settings.noiseTex == null)
             return;
 
@@ -49,19 +48,16 @@ public class RainDropRenderFeature : ScriptableRendererFeature
         m_Pass?.Dispose();
     }
 
-    // -------------------------------------------------------------------------
     class RainDropRenderPass : ScriptableRenderPass
     {
         private Settings m_Settings;
-        private RTHandle  m_NoiseRTHandle;   // Cached — allocated once, not every frame
+        private RTHandle  m_NoiseRTHandle; 
 
         public RainDropRenderPass(Settings settings)
         {
             m_Settings = settings;
             requiresIntermediateTexture = false;
         }
-
-        // Allocate the RTHandle once and reuse it
         private void EnsureNoiseHandle()
         {
             if (m_NoiseRTHandle == null && m_Settings.noiseTex != null)
@@ -74,7 +70,7 @@ public class RainDropRenderFeature : ScriptableRendererFeature
             m_NoiseRTHandle = null;
         }
 
-        // ------- RenderGraph path (Unity 6) ----------------------------------
+
         public override void RecordRenderGraph(RenderGraph renderGraph,
                                                ContextContainer frameData)
         {
@@ -90,7 +86,6 @@ public class RainDropRenderFeature : ScriptableRendererFeature
             int width  = cameraData.cameraTargetDescriptor.width;
             int height = cameraData.cameraTargetDescriptor.height;
 
-            // ---- Intermediate RW texture for compute output ----
             var desc = new RenderTextureDescriptor(width, height,
                                                    RenderTextureFormat.ARGB32, 0)
             {
@@ -101,28 +96,24 @@ public class RainDropRenderFeature : ScriptableRendererFeature
             TextureHandle outputTex = UniversalRenderer.CreateRenderGraphTexture(
                 renderGraph, desc, "_RainDropOutput", false);
 
-            // ---- Handles ----
             TextureHandle cameraColor = resourceData.cameraColor;
             TextureHandle cameraDepth = resourceData.cameraDepthTexture;
             TextureHandle noiseHandle = renderGraph.ImportTexture(m_NoiseRTHandle); // uses cached RTHandle
 
             Settings s = m_Settings;
 
-            // Cache noise dimensions now (can't read them inside SetRenderFunc)
             int noiseW = m_Settings.noiseTex.width;
             int noiseH = m_Settings.noiseTex.height;
 
-            // ---- Compute pass ----
+            //  Compute pass 
             using (var builder = renderGraph.AddComputePass<ComputePassData>(
                        "RainDrop_Compute", out var data))
             {
-                // Declare usage (returns void in Unity 6)
                 builder.UseTexture(cameraColor, AccessFlags.Read);
                 builder.UseTexture(cameraDepth, AccessFlags.Read);
                 builder.UseTexture(outputTex,   AccessFlags.Write);
                 builder.UseTexture(noiseHandle, AccessFlags.Read);
 
-                // Store everything needed at execute time
                 data.shader      = s.rainDropShader;
                 data.noiseTex    = noiseHandle;   // TextureHandle, imported above
                 data.noiseWidth  = noiseW;        // dimensions stored separately
@@ -139,7 +130,6 @@ public class RainDropRenderFeature : ScriptableRendererFeature
                     ExecuteCompute(d, ctx));
             }
 
-            // ---- Blit pass: copy compute result back to camera color ----
             using (var builder = renderGraph.AddRasterRenderPass<BlitPassData>(
                        "RainDrop_Blit", out var data))
             {
@@ -153,7 +143,7 @@ public class RainDropRenderFeature : ScriptableRendererFeature
             }
         }
 
-        // ------- Compute execute -------
+        //  Compute execute 
         static void ExecuteCompute(ComputePassData d, ComputeGraphContext ctx)
         {
             var cmd    = ctx.cmd;
@@ -182,18 +172,16 @@ public class RainDropRenderFeature : ScriptableRendererFeature
             cmd.DispatchCompute(shader, kernel, gx, gy, 1);
         }
 
-        // ------- Blit execute -------
         static void ExecuteBlit(BlitPassData d, RasterGraphContext ctx)
         {
             Blitter.BlitTexture(ctx.cmd, d.source, new Vector4(1, 1, 0, 0), 0, false);
         }
 
-        // ------- Pass data structs -------
         class ComputePassData
         {
             public ComputeShader shader;
-            public TextureHandle noiseTex;      // TextureHandle (imported from RTHandle)
-            public int           noiseWidth;    // stored separately since TextureHandle has no .width
+            public TextureHandle noiseTex;     
+            public int           noiseWidth; 
             public int           noiseHeight;
             public Settings      settings;
             public int           width, height;

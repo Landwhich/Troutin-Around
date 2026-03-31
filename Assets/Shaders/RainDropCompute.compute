@@ -36,7 +36,6 @@ void ScreenSpaceRainDrop(uint3 id : SV_DispatchThreadID)
 
     int2 uv = int2(id.xy);
 
-    // ---- Sobel Edge Detection on Depth ----
     float h = 0.0;
     float v = 0.0;
 
@@ -59,7 +58,7 @@ void ScreenSpaceRainDrop(uint3 id : SV_DispatchThreadID)
     float magnitude = sqrt(h * h + v * v);
     float angle     = atan2(v, h); // -pi to pi
 
-    // ---- Angle Mask: only keep upward-facing edges ----
+    // Angle Mask: only keep upward-facing edges 
     // atan2 returns ~PI/2 for "up" in screen space
     // We restrict to roughly the top half of the gradient circle
     float pi = 3.14159265;
@@ -70,7 +69,6 @@ void ScreenSpaceRainDrop(uint3 id : SV_DispatchThreadID)
     // Edge mask: magnitude above threshold AND pointing upward
     float edgeMask = step(_EdgeThreshold, magnitude) * upMask;
 
-    // ---- Scrolling Noise ----
     float2 noiseUV;
     noiseUV.x = (float)id.x / (float)_Width;
     noiseUV.y = (float)id.y / (float)_Height + _Time.y * (_DropSpeed / _Height);
@@ -81,7 +79,6 @@ void ScreenSpaceRainDrop(uint3 id : SV_DispatchThreadID)
     // Step the noise to get discrete droplet shapes
     float dropMask = step(_RainDropScale, noiseVal);
 
-    // ---- Combine ----
     float finalMask = edgeMask * dropMask;
 
     float4 originalColor = _InputColorTex[uv];
