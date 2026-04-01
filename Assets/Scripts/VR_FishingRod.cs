@@ -1,3 +1,4 @@
+using System.Transactions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,15 +23,22 @@ public class VR_FishingRod : MonoBehaviour
     public Transform lureOrigin;
     public VR_LureCollision lureCollision;
     private Rigidbody lureRB;
+    private Rigidbody rodRB;
 
     private bool isHeld = false;
     private bool isCasting = false;
 
-    private bool wasPressed = false;
+    public SpringJoint baitSpring;
+    public float minDepth;
+    public float maxDepth;
+    public float depthSpeed;
+
+    private float currentDepth = 0.5f;
 
     private void Start()
     {
         lureRB = fishingLure.GetComponent<Rigidbody>();
+        rodRB = GetComponent<Rigidbody>();
     }
 
     private void Awake()
@@ -67,6 +75,7 @@ public class VR_FishingRod : MonoBehaviour
     {
         isHeld = false;
         Debug.Log("Rod dropped");
+        rodRB.isKinematic = false;
     }
 
     void Update()
@@ -80,7 +89,7 @@ public class VR_FishingRod : MonoBehaviour
         bool reelIsPressed = reelValue > 0.8f;
 
         if (castIsPressed && !isCasting && !lureCollision.lureIsInWater) { 
-            Debug.Log("Charging Cast");
+            //Debug.Log("Charging Cast");
 
             isCasting = true;
 
@@ -96,16 +105,31 @@ public class VR_FishingRod : MonoBehaviour
 
         if(isCasting && !castIsPressed && !lureCollision.lureIsInWater)
         {
-            Debug.Log("released Cast");
+            //Debug.Log("released Cast");
             isCasting = false;
             throwLure(controllerVelocity);
         }
 
-        if (reelIsPressed && lureCollision.lureIsInWater)
+        if (reelIsPressed)
         {
-            Debug.Log("Reeling Lure");
+            //Debug.Log("Reeling Lure");
             reelLure();
+            baitHeight(-depthSpeed);
         }
+
+        if (castIsPressed && lureCollision.lureIsInWater) 
+        {
+            baitHeight(depthSpeed);
+        }
+
+    }
+
+    public void baitHeight(float speed)
+    {
+        currentDepth += speed * Time.deltaTime;
+        currentDepth = Mathf.Clamp(currentDepth, minDepth, maxDepth);
+
+        baitSpring.maxDistance = currentDepth;
     }
 
     public void throwLure(Vector3 velocity)
@@ -123,7 +147,7 @@ public class VR_FishingRod : MonoBehaviour
         Vector3 throwForce = Vector3.ClampMagnitude(velocity * lureThrowForce, maxThrowForce);
         lureRB.AddForce(throwForce, ForceMode.Impulse);
         
-        Debug.Log("lure has been thrown");
+        //Debug.Log("lure has been thrown");
     }
 
     public void reelLure()
@@ -135,12 +159,13 @@ public class VR_FishingRod : MonoBehaviour
             lureRB.AddForce(direction* lureReelForce, ForceMode.Acceleration);
         
             float distance = Vector3.Distance(fishingLure.transform.position, lureOrigin.position);
-            if (distance < 0.5f) {
-                Debug.Log("lure reeled in");
+            if (distance < 0.3f) {
+                //Debug.Log("lure reeled in");
 
                 lureRB.linearVelocity = Vector3.zero;
                 lureRB.angularVelocity = Vector3.zero;
                 lureRB.isKinematic=true;
+                lureRB.linearDamping = 1.0f;
 
                 fishingLure.transform.position = lureOrigin.position;
 
