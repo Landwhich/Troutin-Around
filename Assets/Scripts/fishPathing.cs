@@ -67,8 +67,9 @@ public class FishController : MonoBehaviour
         break;
 
         case fishState.lured:
-            Destroy(this);
-            break;
+                //Destroy(this);
+                speed = 0;
+                break;
         default:
         break;
         }
