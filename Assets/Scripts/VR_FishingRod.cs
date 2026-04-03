@@ -28,12 +28,20 @@ public class VR_FishingRod : MonoBehaviour
     private bool isHeld = false;
     private bool isCasting = false;
 
+    public Bait_Collision baitCollision;
     public SpringJoint baitSpring;
     public float minDepth;
     public float maxDepth;
     public float depthSpeed;
 
     private float currentDepth = 0.5f;
+
+    public GameObject fishGrabPrefab;
+    public Transform hookTransform;
+    public bool fishSpawned = false;
+    private GameObject coughtFish;
+
+    //private GameObject coughtFish;
 
     private void Start()
     {
@@ -67,14 +75,14 @@ public class VR_FishingRod : MonoBehaviour
     void OnGrab(SelectEnterEventArgs args)
     {
         isHeld = true;
-        Debug.Log("rod is being held");
+        //Debug.Log("rod is being held");
 
     }
 
     void OnRelease(SelectExitEventArgs args)
     {
         isHeld = false;
-        Debug.Log("Rod dropped");
+        //Debug.Log("Rod dropped");
         rodRB.isKinematic = false;
     }
 
@@ -122,6 +130,36 @@ public class VR_FishingRod : MonoBehaviour
             baitHeight(depthSpeed);
         }
 
+        if (baitCollision.caughtFish && !fishSpawned)
+        {
+            coughtFish = Instantiate(fishGrabPrefab);
+
+
+            //Transform fishTip = fish.GetComponentInChildren<Transform>();
+            coughtFish.transform.SetParent(hookTransform);
+            coughtFish.transform.localPosition = new Vector3(0,0,1);
+            coughtFish.transform.localRotation = Quaternion.identity;
+
+            FishGrabVR fishScript = coughtFish.GetComponent<FishGrabVR>();
+            if (fishScript != null)
+            {
+                fishScript.fishingRod = this;
+            }
+
+            Rigidbody rb = coughtFish.GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+
+
+            fishSpawned = true;
+        }
+
+    }
+
+    public void onFishRemove()
+    {
+        baitCollision.caughtFish = false;
+        fishSpawned = false;
+        //coughtFish.transform.SetParent(null);
     }
 
     public void baitHeight(float speed)
