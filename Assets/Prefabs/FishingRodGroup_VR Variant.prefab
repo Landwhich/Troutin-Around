@@ -417,15 +417,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8143952493540707895, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
-      value: 0.254717
+      value: 0.047169805
       objectReference: {fileID: 0}
     - target: {fileID: 8143952493540707895, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.g
-      value: 0.254717
+      value: 0.047169805
       objectReference: {fileID: 0}
     - target: {fileID: 8143952493540707895, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.r
-      value: 0.254717
+      value: 0.047169805
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143952493540707895, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143952493540707895, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143952493540707895, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8143952493540707895, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
       propertyPath: m_Parameters.colorGradient.m_ColorSpace
@@ -459,6 +471,7 @@ PrefabInstance:
     - {fileID: 4723220606631816540, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
     - {fileID: 7138051696485188168, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
     - {fileID: 6917245723476777767, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
+    - {fileID: 1185564896311136974, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3075282498386167378, guid: 17144fe91d82fe0479271e798a86f997, type: 3}
     - {fileID: 8812661730743846883, guid: 17144fe91d82fe0479271e798a86f997, type: 3}

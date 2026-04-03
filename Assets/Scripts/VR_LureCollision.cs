@@ -22,7 +22,6 @@ public class VR_LureCollision : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (lureIsInWater)
         {
             lureRB.linearVelocity = Vector3.Lerp(lureRB.linearVelocity, Vector3.zero, Time.fixedDeltaTime * 2.0f);
@@ -35,7 +34,6 @@ public class VR_LureCollision : MonoBehaviour
         {
             //Debug.Log("The lure collided with water!");
             lureIsInWater = true;
-
             lureRB.linearVelocity = Vector3.zero;
             lureRB.linearDamping = waterDragSpeed;
         }

@@ -4,9 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class FishGrabVR : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private XRGrabInteractable grab;
-    //public GameObject parentObj;
     public VR_FishingRod fishingRod;
     public Transform fishMouth;
 

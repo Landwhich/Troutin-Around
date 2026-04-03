@@ -69,7 +69,6 @@ public class FishController : MonoBehaviour
         case fishState.lured:
                 this.enabled = false;
                 Destroy(this);
-                //speed = 0;
                 break;
         default:
         break;
@@ -100,10 +99,8 @@ public class FishController : MonoBehaviour
     void OnTriggerStay(Collider other) {
         if (!other.CompareTag("lure")) return;
         float dist = Vector3.Distance(transform.position, other.transform.position);
-        //Debug.Log("FISH close "+ dist);
         if (dist < 1.5f)
         {
-            //Debug.Log("FISH LURED:");
             _state = fishState.lured;
         }
         else {
