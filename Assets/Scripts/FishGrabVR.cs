@@ -8,6 +8,7 @@ public class FishGrabVR : MonoBehaviour
     private XRGrabInteractable grab;
     //public GameObject parentObj;
     public VR_FishingRod fishingRod;
+    public Transform fishMouth;
 
     void Awake()
     {
@@ -33,14 +34,8 @@ public class FishGrabVR : MonoBehaviour
     private void OnGrab(SelectEnterEventArgs args)
     {
         transform.SetParent(null,true);
-        //Rigidbody rb = GetComponent<Rigidbody>();
-        //if (rb != null)
-        //{
-        //    rb.isKinematic = false;
-        //    rb.useGravity = true;
-        //}
         fishingRod.onFishRemove();
-        Debug.Log("FISH GRABBED FROM ROD");
+        //Debug.Log("FISH GRABBED FROM ROD");
     }
 
     private void OnRelease(SelectExitEventArgs args)

@@ -41,8 +41,6 @@ public class VR_FishingRod : MonoBehaviour
     public bool fishSpawned = false;
     private GameObject coughtFish;
 
-    //private GameObject coughtFish;
-
     private void Start()
     {
         lureRB = fishingLure.GetComponent<Rigidbody>();
@@ -134,12 +132,9 @@ public class VR_FishingRod : MonoBehaviour
         {
             coughtFish = Instantiate(fishGrabPrefab);
 
-
-            //Transform fishTip = fish.GetComponentInChildren<Transform>();
             coughtFish.transform.SetParent(hookTransform);
-            coughtFish.transform.localPosition = new Vector3(0,0,1);
-            coughtFish.transform.localRotation = Quaternion.identity;
-
+            coughtFish.transform.localPosition = new Vector3(0,-10,0);
+            coughtFish.transform.localRotation = Quaternion.Euler(-90f,0f,0f);
             FishGrabVR fishScript = coughtFish.GetComponent<FishGrabVR>();
             if (fishScript != null)
             {
@@ -148,8 +143,6 @@ public class VR_FishingRod : MonoBehaviour
 
             Rigidbody rb = coughtFish.GetComponent<Rigidbody>();
             rb.isKinematic = true;
-
-
             fishSpawned = true;
         }
 
@@ -159,7 +152,6 @@ public class VR_FishingRod : MonoBehaviour
     {
         baitCollision.caughtFish = false;
         fishSpawned = false;
-        //coughtFish.transform.SetParent(null);
     }
 
     public void baitHeight(float speed)
@@ -197,13 +189,13 @@ public class VR_FishingRod : MonoBehaviour
             lureRB.AddForce(direction* lureReelForce, ForceMode.Acceleration);
         
             float distance = Vector3.Distance(fishingLure.transform.position, lureOrigin.position);
-            if (distance < 0.3f) {
+            if (distance < 0.1f) {
                 //Debug.Log("lure reeled in");
 
                 lureRB.linearVelocity = Vector3.zero;
                 lureRB.angularVelocity = Vector3.zero;
                 lureRB.isKinematic=true;
-                lureRB.linearDamping = 1.0f;
+                //lureRB.linearDamping = 1.0f;
 
                 fishingLure.transform.position = lureOrigin.position;
 

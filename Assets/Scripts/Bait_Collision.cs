@@ -3,7 +3,6 @@ using UnityEngine;
 public class Bait_Collision : MonoBehaviour
 {
     public bool caughtFish = false;
-    //GameObject coughtFishObject;
 
     private void OnTriggerEnter(Collider collision)
     {
