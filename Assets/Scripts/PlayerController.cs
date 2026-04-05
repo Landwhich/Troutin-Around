@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 12.0f;
+    private float verticalVelocity = 0;
+    private const float gravity = -9.8f;
 
     public PlayerController player;
     public CharacterController controller;
@@ -31,6 +33,13 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        controller.Move(CurrentMove * Time.fixedDeltaTime);
+        if (controller.isGrounded) {
+            verticalVelocity = -0.1f; // Keeps player pressed to ground
+        }
+        // Apply gravity when not grounded
+        else {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+        controller.Move((CurrentMove + new Vector3(0, verticalVelocity, 0)) * Time.fixedDeltaTime);
     }
 }
