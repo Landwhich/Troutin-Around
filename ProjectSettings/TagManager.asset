@@ -8,6 +8,7 @@ TagManager:
   - lure
   - Interactible
   - boat
+  - Fish
   layers:
   - Default
   - TransparentFX

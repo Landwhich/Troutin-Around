@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 4149784273848059547}
   - {fileID: 5689568838606586332}
+  - {fileID: 5637483986378213353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7138051696485188168
@@ -75,6 +76,37 @@ MonoBehaviour:
   fishingLure: {fileID: 6712869068147954561}
   lureOrigin: {fileID: 6506867635562700694}
   lureCollision: {fileID: 4723220606631816540}
+--- !u!1 &4421076861986780826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5637483986378213353}
+  m_Layer: 0
+  m_Name: FishingRodGroup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5637483986378213353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4421076861986780826}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 740572242656970870}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5765284656425980488
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,13 +131,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5765284656425980488}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.8660254, z: -0.5, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 2.022, z: -0.012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6506867635562700694}
   m_Father: {fileID: 4149784273848059547}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &6712869068147954561
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,12 +168,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6712869068147954561}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.70710677, w: 0}
-  m_LocalPosition: {x: 0, y: 2.04, z: -0.03}
+  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0.017999887, z: 0.01800009}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4149784273848059547}
+  m_Father: {fileID: 3637136866431820518}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6392709209392402731
 MeshFilter:
@@ -468,9 +501,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6506867635562700694}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82925bad3cc3ef74996c932e13702937, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3637136866431820518}
