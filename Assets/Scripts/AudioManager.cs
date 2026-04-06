@@ -71,21 +71,13 @@ public class AudioManager : MonoBehaviour
     }
     private void playSceneMusic(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "Start")
-        {
-            PlayMusic(4);
-        }
-        if(scene.name == "WordEntry")
-        {
-            PlayMusic(1);
-        }
-        if(scene.name == "WordPlacement")
+        if(scene.name == "LaunchScene")
         {
             PlayMusic(0);
         }
-        if (scene.name == "StoryReveal")
+        if(scene.name == "MainScene")
         {
-            PlayMusic(2);
+            PlayMusic(1);
         }
     }
 
