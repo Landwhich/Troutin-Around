@@ -11,6 +11,6 @@ public class StartGame : MonoBehaviour
 
     public void VR_launch()
     {
-        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("Cayden", LoadSceneMode.Single);
     }
 }
