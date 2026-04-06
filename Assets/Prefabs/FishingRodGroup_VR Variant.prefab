@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caughtFish: 0
+  fishName: 
 --- !u!135 &5680431609840441071
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -701,7 +702,11 @@ MonoBehaviour:
   minDepth: 0.05
   maxDepth: 5
   depthSpeed: 1
-  fishGrabPrefab: {fileID: 5692561268328344515, guid: 0c58d6b8e5edd574eac3d4a3f1fe49b8, type: 3}
+  MackerelGrabPrefab: {fileID: 5692561268328344515, guid: 0c58d6b8e5edd574eac3d4a3f1fe49b8, type: 3}
+  BassGrabPrefab: {fileID: 7472524894864585147, guid: 326cbdb0f88ce8e459fd965f601e5650, type: 3}
+  CatfishGrabPrefab: {fileID: 4926542312179730786, guid: f474aeadd35053a4ab75f84d8577cb2e, type: 3}
+  TroutGrabPrefab: {fileID: 1832526930265438440, guid: 9efdf689d276d0a4889eda9722d2ab87, type: 3}
+  PanfishGrabPrefab: {fileID: 8557925437506322789, guid: 5cebd6bdbf6b0be419e1ced58bda572e, type: 3}
   hookTransform: {fileID: 8289086062780957706}
   fishSpawned: 0
 --- !u!4 &3539563272098006335 stripped
