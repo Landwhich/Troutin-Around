@@ -160,4 +160,4 @@ MonoBehaviour:
   avoidanceStrength: 20
   boundarySteerFraction: 0.65
   boundaryStrength: 30
-  waterLevel: 0
+  waterLevel: -2

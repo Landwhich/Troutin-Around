@@ -67,8 +67,8 @@ public class FishController : MonoBehaviour
         break;
 
         case fishState.lured:
-                this.enabled = false;
-                Destroy(this);
+                enabled = false;
+                Destroy(gameObject);
                 break;
         default:
         break;
