@@ -108,7 +108,7 @@ MonoBehaviour:
   avoidanceStrength: 20
   boundarySteerFraction: 0.65
   boundaryStrength: 100
-  waterLevel: 3.5
+  waterLevel: -2
 --- !u!64 &7005368406216471738
 MeshCollider:
   m_ObjectHideFlags: 0
