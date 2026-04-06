@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e499d2d3b7816489f1ab42ad48fe28, type: 3}
   m_Name: RainDropRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     rainDropShader: {fileID: 7200000, guid: de5acf3bbe51c8446906683a3c2d816c, type: 3}
     noiseTex: {fileID: 2800000, guid: 73d7f0e1ca8797448a3848b394c570e6, type: 3}
-    dropColor: {r: 0.10092559, g: 0.2830891, b: 0.33962262, a: 1}
-    thickness: 5
-    sobelThreshold: 0.032
-    rainDropScale: 0.267
-    dropSpeed: 100
+    dropColor: {r: 0.14417942, g: 0.20706552, b: 0.2264151, a: 1}
+    thickness: 2
+    sobelThreshold: 0.054
+    rainDropScale: 0.335
+    dropSpeed: 64.41
     renderPassEvent: 500
     previewInSceneView: 0
 --- !u!114 &11400000
@@ -50,7 +50,8 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
   - {fileID: -7331716400514670376}
-  m_RendererFeatureMap: ad6b866f10d7b46cd8e06a61c782409a
+  - {fileID: 7032874493091720596}
+  m_RendererFeatureMap: ad6b866f10d7b46cd8e06a61c782409a942da3f616ca9961
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -76,6 +77,21 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
+--- !u!114 &7032874493091720596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fd8bb8efc4f9a4fbdeb62078180e66, type: 3}
+  m_Name: PixelationRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    pixelSize: 3
 --- !u!114 &7833122117494664109
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -36,7 +36,11 @@ public class VR_FishingRod : MonoBehaviour
 
     private float currentDepth = 0.5f;
 
-    public GameObject fishGrabPrefab;
+    public GameObject MackerelGrabPrefab;
+    public GameObject BassGrabPrefab;
+    public GameObject CatfishGrabPrefab;
+    public GameObject TroutGrabPrefab;
+    public GameObject PanfishGrabPrefab;
     public Transform hookTransform;
     public bool fishSpawned = false;
     private GameObject coughtFish;
@@ -127,7 +131,32 @@ public class VR_FishingRod : MonoBehaviour
         //put fish on the lure when collision with fish happens
         if (baitCollision.caughtFish && !fishSpawned)
         {
-            coughtFish = Instantiate(fishGrabPrefab);
+            if (baitCollision.fishName == "Fish")
+            {
+                Debug.Log("FISH CAUGHT");
+                coughtFish = Instantiate(MackerelGrabPrefab);
+            }
+            else if (baitCollision.fishName == "Trout")
+            {
+                coughtFish = Instantiate(TroutGrabPrefab);
+            }
+            else if (baitCollision.fishName == "Bass")
+            {
+                coughtFish = Instantiate(BassGrabPrefab);
+            }
+            else if (baitCollision.fishName == "Panfish")
+            {
+                coughtFish = Instantiate(PanfishGrabPrefab);
+            }
+            else if (baitCollision.fishName == "Catfish")
+            {
+                coughtFish = Instantiate(CatfishGrabPrefab);
+            }
+
+            if (coughtFish == null) return;
+
+            //coughtFish = Instantiate();
+            //coughtFish = Instantiate(MackerelGrabPrefab);
 
             coughtFish.transform.SetParent(hookTransform);
             coughtFish.transform.localPosition = new Vector3(0,-10,0);
