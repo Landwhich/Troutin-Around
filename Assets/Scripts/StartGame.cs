@@ -6,7 +6,7 @@ public class StartGame : MonoBehaviour
 {
     public void onClick()
     {
-        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("MK_SCENE", LoadSceneMode.Single);
     }
 
     public void VR_launch()
