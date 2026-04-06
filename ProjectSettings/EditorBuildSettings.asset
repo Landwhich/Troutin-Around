@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/World_Assests.unity
     guid: 5b0e7af4c0ac2e6478eec6a01c22f10f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Cayden.unity
     guid: f940f9f5b7466e142a41076cd7087921
   m_configObjects:
